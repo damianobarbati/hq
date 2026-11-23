@@ -1,0 +1,4 @@
+minimumReleaseAgeExclude:
+  - '@tanstack/react-store@0.11.4'
+  - '@tanstack/store@0.11.3'
+  - nano-ux@0.0.10

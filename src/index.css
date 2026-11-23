@@ -1,0 +1,522 @@
+@import "nano-ux/theme.css";
+@import "@fontsource-variable/inter";
+@reference "tailwindcss";
+
+:root {
+  --font-family: "Inter Variable", system-ui, sans-serif;
+  --radius: 6px;
+  --theme-fg-muted: var(--theme-fg);
+}
+
+body {
+  @apply min-h-screen;
+}
+
+:where(a, button):focus-visible,
+#main:target:focus-visible h1 {
+  @apply outline-2 outline-(--color-focus) outline-offset-4;
+}
+
+#main:focus {
+  @apply outline-none;
+}
+
+.shell {
+  @apply w-[min(100%_-_4rem,_75rem)] mx-auto;
+}
+.print-only {
+  @apply hidden;
+}
+
+.skip-link {
+  @apply fixed z-20 top-3 left-3 py-[0.6rem] px-4 bg-(--color-surface) rounded-lg [transform:translateY(-180%)];
+}
+
+.skip-link:focus {
+  @apply transform-none;
+}
+
+.site-header {
+  @apply grid grid-cols-[1fr_auto_auto] items-center gap-[1.7rem] min-h-21 border-b border-b-(--color-border);
+}
+
+.wordmark {
+  @apply justify-self-start no-underline font-semibold whitespace-nowrap;
+}
+
+.site-nav,
+.contact-links {
+  @apply flex items-center flex-wrap gap-y-[0.4rem] gap-x-[1.35rem];
+}
+
+.site-nav a,
+.contact-links a {
+  @apply inline-flex items-center gap-[0.3rem] text-sm font-medium no-underline;
+}
+
+.site-nav a {
+  @apply min-h-[2.4rem];
+}
+.site-nav a[aria-current],
+.site-nav a:hover,
+.contact-links a:hover {
+  @apply underline underline-offset-[0.22em];
+}
+.site-nav svg,
+.contact-links svg,
+.inline-link svg {
+  @apply size-[0.9em] flex-none;
+}
+.theme-control {
+  @apply min-w-11 min-h-11 justify-self-end;
+}
+.theme-selector {
+  @apply static;
+}
+
+.hero {
+  @apply grid grid-cols-[1.1fr_0.9fr] items-center gap-[clamp(1.5rem,_5vw,_5rem)] py-[clamp(2.75rem,_5vw,_4.75rem)] text-center;
+}
+
+.hero h1 {
+  @apply text-(color:--color-fg);
+
+  @media (width > 660px) {
+    @apply mb-0;
+  }
+}
+
+.hero-title {
+  @apply text-balance;
+}
+
+.hero-copy {
+  @apply max-w-120 mt-3 mx-auto mb-0;
+}
+
+.actions {
+  @apply flex items-center flex-wrap gap-[0.6rem] mt-6;
+}
+
+.hero .actions {
+  @apply justify-center;
+}
+
+.product-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.product-tile {
+  @apply relative isolate grid items-center grid-cols-[minmax(0,_1.2fr)_minmax(0,_1fr)] gap-3 min-h-52 overflow-hidden border border-(--color-border) rounded-(--radius);
+}
+
+.product-text {
+  @apply relative z-1 py-6 pl-[clamp(1rem,_2.75vw,_2rem)];
+}
+.product-text p {
+  @apply mt-2 mx-0 mb-3 max-w-64 text-sm;
+}
+.product-domain {
+  @apply font-semibold;
+}
+
+.product-tile img {
+  @apply w-full block rounded-(--radius);
+}
+
+[data-product="tubu"] img {
+  @apply [transform:rotate(-5deg)_translate(0.25rem,_1rem)_scale(1.06)];
+}
+[data-product="voltom"] img {
+  @apply w-3/4 max-w-40 max-h-44 object-cover object-top justify-self-center self-end [transform:rotate(5deg)_translate(0,_1rem)];
+}
+
+.product-arrow {
+  @apply grid place-items-center absolute z-2 top-3 right-3 size-8 bg-inherit border border-current rounded-(--radius);
+}
+
+.home-products,
+.home-work {
+  @apply border-t border-t-(--color-border) pt-7 pb-12;
+}
+
+.home-contact {
+  @apply flex flex-wrap items-center justify-between gap-4 mb-[clamp(2.6rem,_6vw,_4.5rem)] p-[clamp(1.25rem,_4vw,_2.5rem)] rounded-(--radius) border border-(--color-border) bg-(--color-surface) scroll-mt-4;
+}
+
+.home-contact a {
+  @apply wrap-anywhere underline underline-offset-4;
+}
+
+.section-heading {
+  @apply flex [align-items:end] justify-between flex-wrap gap-y-[0.7rem] gap-x-4 mb-[1.35rem];
+}
+
+.section-heading h2,
+.home-contact h2,
+.project-group > h2,
+.cv-section h2 {
+  @apply text-(color:--color-fg);
+}
+
+.inline-link {
+  @apply inline-flex items-center gap-[0.35em] text-sm font-semibold no-underline;
+}
+.inline-link:hover {
+  @apply underline underline-offset-[0.22em];
+}
+
+.work-grid {
+  @apply grid grid-cols-2 gap-[0.8rem];
+}
+.open-source-grid {
+  @apply grid-cols-4;
+}
+.product-tile,
+.project-card {
+  @apply cursor-pointer no-underline;
+}
+.project-card {
+  @apply flex flex-col min-w-0 min-h-[9.4rem] p-[1.1rem] border border-(--color-border) bg-(--color-surface) rounded-(--radius);
+}
+.project-card-heading {
+  @apply flex items-center justify-between gap-[0.6rem];
+}
+.project-card-heading h3 {
+  @apply text-(color:--color-fg) wrap-anywhere;
+}
+.project-outbound {
+  @apply size-4 flex-none;
+}
+.project-card > p {
+  @apply flex-1 mt-[0.42rem] mx-0 mb-3 text-sm;
+}
+.tag-list {
+  @apply flex gap-[0.35rem] flex-wrap;
+}
+.tag-list .hq-tag {
+  @apply py-[0.16rem] px-[0.48rem] rounded-[0.45rem];
+}
+
+.page-heading {
+  @apply pt-6 pb-[2.2rem];
+}
+.page-heading h1 {
+  @apply text-(color:--color-fg) wrap-anywhere;
+}
+.page-heading p:not(.eyebrow, .print-name) {
+  @apply mt-[0.8rem] mx-0 mb-0;
+}
+.page-heading .eyebrow {
+  @apply mt-0 mx-0 mb-[0.65rem];
+}
+.project-group {
+  @apply mb-[2.3rem];
+}
+.project-group > h2 {
+  @apply mb-[0.85rem];
+}
+.project-detail {
+  @apply pt-8 pb-19;
+}
+.project-detail .page-heading {
+  @apply pt-[2.8rem];
+}
+.detail-grid {
+  @apply grid grid-cols-2 gap-8;
+}
+.detail-grid h2 {
+  @apply mt-0 mx-0 mb-[0.55rem] text-(color:--color-fg);
+}
+.detail-grid .tag-list {
+  @apply mt-4;
+}
+.detail-role {
+  @apply mt-4;
+}
+.detail-preview {
+  @apply grid place-items-center m-0 p-[1.4rem] rounded-(--radius) bg-(--color-layer);
+}
+.detail-preview img {
+  @apply max-w-full rounded-(--radius);
+}
+[data-product="tubu"],
+[data-project="tubu"] {
+  @apply bg-(--theme-lime-tint);
+}
+
+[data-product="voltom"],
+[data-project="voltom"] {
+  @apply bg-(--color-cyan-tint);
+}
+
+[data-project="voltom"] img {
+  @apply max-w-[min(100%,_15rem)];
+}
+
+.experience-sheet {
+  @apply pb-17;
+}
+.experience-grid {
+  @apply grid grid-cols-[9rem_minmax(0,_1fr)] gap-8;
+}
+.experience-index nav {
+  @apply sticky top-6 flex [align-items:start] flex-col;
+}
+.experience-index h2 {
+  @apply mt-0 mx-0 mb-[0.45rem] text-sm text-(color:--color-fg);
+}
+.experience-index a {
+  @apply py-[0.3rem] px-1 min-w-11 no-underline text-sm tabular-nums;
+}
+.experience-index a:hover {
+  @apply underline;
+}
+.timeline {
+  @apply max-w-232;
+}
+.year-group,
+.role {
+  @apply scroll-mt-[1.2rem];
+}
+.year-label {
+  @apply mt-0 mx-0 mb-[0.7rem] tabular-nums;
+}
+.role {
+  @apply mb-[1.2rem] py-[1.2rem] px-[1.3rem] border border-(--color-border) bg-(--color-surface) rounded-(--radius);
+}
+.role:target {
+  @apply border-(--color-focus);
+}
+.role-header {
+  @apply flex justify-between gap-y-[0.45rem] gap-x-4;
+}
+.role-header h3 {
+  @apply text-(color:--color-fg);
+}
+.role-header h3 a {
+  @apply no-underline;
+}
+.role-header h3 a:hover {
+  @apply underline underline-offset-[0.17em];
+}
+.role-title {
+  @apply mt-[0.21rem] mx-0 mb-0 font-semibold;
+}
+.role-dates {
+  @apply flex-none text-right text-sm;
+}
+.role-dates p {
+  @apply m-0;
+}
+.bullet-list {
+  @apply list-disc mt-[0.65rem] mx-0 mb-0 pl-[1.15rem];
+}
+.bullet-list li + li {
+  @apply mt-1;
+}
+.role-links {
+  @apply flex flex-wrap gap-y-[0.45rem] gap-x-4 mt-3;
+}
+.cv-section {
+  @apply pt-5 mt-6 border-t border-t-(--color-border);
+}
+.cv-section dl {
+  @apply mt-[0.7rem];
+}
+.cv-section dl div + div {
+  @apply mt-[0.45rem];
+}
+.cv-section dt {
+  @apply text-(color:--color-fg) font-semibold;
+}
+.cv-section dd {
+  @apply m-0;
+}
+.site-footer {
+  @apply flex justify-between items-center flex-wrap gap-y-2 gap-x-6 py-2 border-t border-t-(--color-border);
+}
+.footer-name {
+  @apply m-0 font-semibold;
+}
+.built-with {
+  @apply text-xs underline-offset-[0.2em];
+}
+@media (max-width: 1000px) {
+  .open-source-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (max-width: 850px) {
+  .shell {
+    @apply w-[calc(100%_-_2.75rem)];
+  }
+}
+
+@media (max-width: 660px) {
+  .shell {
+    @apply w-[calc(100%_-_2rem)];
+  }
+  .site-header {
+    @apply min-h-auto grid-cols-[1fr_auto] gap-y-[0.1rem] gap-x-4 pt-[0.65rem];
+  }
+  .site-nav {
+    @apply col-span-full row-start-2 gap-y-0 gap-x-[clamp(0.6rem,_3vw,_1.15rem)];
+  }
+  .site-nav a {
+    @apply min-h-11;
+  }
+  .theme-control {
+    @apply col-start-2 row-start-1;
+  }
+  .hero {
+    @apply grid-cols-1 gap-5 pt-8 pb-9;
+  }
+  .hero .actions {
+    @apply mt-4;
+  }
+  .product-grid {
+    @apply grid-cols-1 gap-3;
+  }
+  .product-tile {
+    @apply min-h-40;
+  }
+  [data-product="voltom"] img {
+    @apply max-w-32 max-h-36;
+  }
+  .home-products,
+  .home-work {
+    @apply pt-6 pb-9;
+  }
+  .project-card {
+    @apply p-[0.85rem];
+  }
+  .detail-grid,
+  .experience-grid {
+    @apply grid-cols-[1fr];
+  }
+  .experience-grid {
+    @apply gap-[0.9rem];
+  }
+  .experience-index nav {
+    @apply static flex-row flex-wrap items-center;
+  }
+  .experience-index h2 {
+    @apply w-full;
+  }
+  .experience-index a {
+    @apply py-2;
+  }
+  .role-header {
+    @apply flex-col;
+  }
+  .role-dates {
+    @apply text-start;
+  }
+}
+
+@media (max-width: 440px) {
+  .work-grid {
+    @apply grid-cols-1;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .product-tile,
+  .project-card {
+    @apply transition-transform duration-170;
+  }
+  .product-tile:hover,
+  .project-card:hover {
+    @apply scale-102;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+@media print {
+  :root {
+    @apply scheme-light;
+  }
+
+  :root,
+  body {
+    @apply bg-(--color-surface);
+  }
+
+  body {
+    @apply text-xs min-h-0;
+  }
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .screen-only,
+  .year-label {
+    @apply hidden!;
+  }
+  .print-only {
+    @apply block;
+  }
+  .shell {
+    @apply w-auto;
+  }
+  .experience-sheet,
+  .page-heading {
+    @apply p-0;
+  }
+  .page-heading {
+    @apply mb-[14pt];
+  }
+  .page-heading h1 {
+    @apply text-base;
+  }
+  .page-heading p:not(.eyebrow, .print-name) {
+    @apply mt-[3pt];
+  }
+  .page-heading .print-name {
+    @apply mt-0 mx-0 mb-[5pt] text-3xl font-bold;
+  }
+  .print-profiles {
+    @apply flex gap-[11pt] mt-[6pt] underline;
+  }
+  .experience-grid {
+    @apply block;
+  }
+  .role {
+    @apply break-inside-avoid p-0 border-0 rounded-none bg-(--color-surface) mt-0 mx-0 mb-[8pt];
+  }
+  .role-header {
+    @apply flex-row;
+  }
+  .role-header h3 {
+    @apply text-sm;
+  }
+  .role-title {
+    @apply mt-[2pt];
+  }
+  .role-dates {
+    @apply text-right text-xs;
+  }
+  .bullet-list {
+    @apply mt-[2pt];
+  }
+  .bullet-list li + li {
+    @apply mt-[1pt];
+  }
+  .cv-section {
+    @apply break-inside-avoid mt-[9pt] pt-[5pt];
+  }
+  .cv-section h2 {
+    @apply text-base;
+  }
+  .cv-section dl {
+    @apply mt-[3pt];
+  }
+  .cv-section dl div + div {
+    @apply mt-[3pt];
+  }
+}
