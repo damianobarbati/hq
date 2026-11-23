@@ -1,9 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta id="theme-color" name="theme-color" content="">
+    <script>
+      try {
+        const themeKey = "nano-ux-theme";
+        const selectedAtKey = "nano-ux-theme-selected-at";
+        const currentTheme = localStorage.getItem(themeKey);
+        const savedTheme = currentTheme ?? localStorage.getItem("nano-ui-theme");
+        const selectedAt =
+          currentTheme === null
+            ? localStorage.getItem("nano-ui-theme-selected-at")
+            : localStorage.getItem(selectedAtKey);
+        const selectedDate = new Date(Number(selectedAt));
+        const expiresAt = new Date(selectedDate);
+        expiresAt.setHours(3, 0, 0, 0);
+        const expired = Number(selectedAt) > 0 && selectedDate.getHours() < 3 && Date.now() >= expiresAt.getTime();
+
+        if (!expired && (savedTheme === "light" || savedTheme === "dark" || savedTheme === "system")) {
+          document.documentElement.classList.toggle("dark", savedTheme === "dark");
+          document.documentElement.classList.toggle("light", savedTheme === "light");
+        } else {
+          localStorage.removeItem(selectedAtKey);
+          localStorage.setItem(themeKey, "dark");
+        }
+      } catch {}
+    </script>
     <!--page-head-->
     <link rel="stylesheet" href="/index.css">
     <script type="module" src="/index.tsx"></script>

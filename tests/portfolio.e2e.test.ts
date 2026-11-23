@@ -39,7 +39,9 @@ test.describe("Project catalog", () => {
 });
 
 test.describe("Theme selector", () => {
-	test("has an accessible name and changes the theme from the keyboard", async ({
+	test.use({ colorScheme: "light" });
+
+	test("defaults to dark and keeps the keyboard selection after reload", async ({
 		page,
 	}) => {
 		await page.goto("/hq/");
@@ -48,9 +50,18 @@ test.describe("Theme selector", () => {
 			name: "Change color theme",
 		});
 
+		const html = page.locator("html");
+
+		await expect(html).toHaveCSS("color-scheme", "dark");
 		await themeButton.press("Enter");
-		await expect(page.locator("html")).toHaveClass(/\blight\b/);
+		await expect(html).toHaveCSS("color-scheme", "light dark");
 		await themeButton.press("Enter");
-		await expect(page.locator("html")).toHaveClass(/\bdark\b/);
+		await expect(html).toHaveCSS("color-scheme", "light");
+
+		await page.reload();
+
+		await expect(html).toHaveCSS("color-scheme", "light");
+		await themeButton.press("Enter");
+		await expect(html).toHaveCSS("color-scheme", "dark");
 	});
 });
